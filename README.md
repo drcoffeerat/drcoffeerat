@@ -1,179 +1,61 @@
-# █▓▒░ Secure Systems & Infrastructure ░▒▓█
+# 👨‍💻 DrCoffeeRat — Secure Systems & Infrastructure Engineering
 
-```
-> initializing secure environment
-> threat model: hostile by default
-> isolation: enforced
-```
+[![GitHub stars](https://img.shields.io/github/stars/drcoffeerat/drcoffeerat?style=social)](https://github.com/drcoffeerat/drcoffeerat/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/drcoffeerat/drcoffeerat?style=social)](https://github.com/drcoffeerat/drcoffeerat/network)
 
 ---
 
-## Overview
+## 🧠 About Me
 
-This repository documents **professional-grade ICT, Linux, and security architecture work** with a focus on:
+I’m a systems and infrastructure engineer with deep expertise in:
+- **Linux-centric system design** (minimal, reproducible, secure)
+- **Infrastructure architecture** (network segmentation, zones, firewalls)
+- **SecOps & personal operational security (PerSec)**
+- **Privacy-aware self-hosting and automation**
 
-* secure system and infrastructure design
-* SecOps and personal operational security (PerSec)
-* hardened Linux environments
-* privacy-respecting, self-hosted services
+I’m passionate about building systems that are:
+- **secure by design**
+- **auditable**
+- **resilient**
+- **minimal yet powerful**
 
-The emphasis is on **design rationale, threat modeling, and reproducible architecture**, not convenience-driven configuration.
-
----
-
-## Design Principles
-
-```
-• assume compromise
-• minimize attack surface
-• isolate trust domains
-• encrypt everything at rest
-• rebuild faster than investigate
-```
-
-Security is treated as a continuous process, not a final state.
+This repository serves as my **professional profile and architecture portfolio** — it highlights my design philosophy, reference architectures, and infrastructure patterns rather than specific app code.
 
 ---
 
-## Areas of Expertise
+## 🎯 Core Competencies
 
-### Qubes OS Architecture
+✔ **Security-First Architecture**  
+Crafting designs that assume compromise, emphasize isolation, and enforce strict trust boundaries.
 
-* split-trust workflows and compartmentalization
-* disposable environments for untrusted workloads
-* minimal, hardened dom0 design
-* hardware-backed isolation assumptions
+✔ **Hardened Linux Systems**  
+Experienced with Gentoo-based minimal systems, custom kernel builds, SELinux, seccomp, and non-systemd init flows.
 
----
+✔ **Encryption & Data Protection**  
+Designing storage chains with authenticated encryption (e.g., Sepherent-XT), signed boot components, and snapshot-safe layouts.
 
-### Gentoo-Based Minimal Linux Systems
+✔ **Network & Infrastructure Design**  
+Segmentation using VLANs and firewall policies, bastion/jump hosts, and zero-trust networking principles.
 
-* hardened Gentoo profiles
-* custom kernel builds
-* SELinux and seccomp enforcement
-* non-systemd init (s6-based designs)
-* reduced and auditable userspace
+✔ **Qubes OS & Isolation Workflows**  
+Hands-on with compartmentalized systems and split-trust workflows geared toward hostile threat models.
 
----
-
-### Encryption & Data Protection
-
-```
-UEFI → signed UKI → Sepherent-XT → BTRFS
-```
-
-* Sepherent-XT for full-disk encryption
-* LUKS2 with integrity and authenticated encryption
-* key separation and rotation strategies
-* snapshot-safe encrypted storage layouts
+✔ **Self-Hosted Services**  
+Deploying and securing services that respect privacy and minimize external dependence.
 
 ---
 
-### Network & Infrastructure Design
+## 📘 Professional Summary
 
-* zero-trust network assumptions
-* segmented network zones (VLAN-based)
-* firewall-first service exposure
-* bastion and jump-host patterns
-* logging designed for security, not surveillance
+Much of my work centers on **design strategy and secure architecture** — typically in environments where:
+- users may be untrusted
+- network zones are hostile
+- physical compromise is a consideration
+- data confidentiality is mission-critical
 
----
-
-## Reference Architecture (Personal Secure System)
-
-```
-┌─────────────────────────────┐
-│        UEFI Firmware        │
-│   Secure / Measured Boot   │
-└──────────────┬──────────────┘
-               │
-┌──────────────▼──────────────┐
-│     Unified Kernel Image    │
-│   Signed · Immutable        │
-└──────────────┬──────────────┘
-               │
-┌──────────────▼──────────────┐
-│       Sepherent-XT          │
-│   Full Disk Encryption     │
-└──────────────┬──────────────┘
-               │
-┌──────────────▼──────────────┐
-│        BTRFS Layout         │
-│   Root · Home · Snapshots   │
-└──────────────┬──────────────┘
-               │
-┌──────────────▼──────────────┐
-│    Hardened Gentoo System   │
-│   SELinux · Seccomp         │
-└─────────────────────────────┘
-```
+Everything is built with **auditability, reproducibility, and threat modeling in mind**.
 
 ---
 
-## Threat Model (High-Level)
+## 🗂 Repository Structure
 
-**Assumed threats:**
-
-* opportunistic and targeted malware
-* supply-chain compromise
-* physical access or device seizure
-* coerced disclosure
-
-**Mitigation strategy:**
-
-```
-• isolation over hardening alone
-• encryption by default
-• strict trust boundaries
-• fast rebuild and key rotation
-```
-
----
-
-## Repository Structure
-
-```
-.
-├── docs/
-│   ├── threat-models/
-│   ├── qubes/
-│   ├── encryption/
-│   └── networking/
-│
-├── gentoo/
-│   ├── kernel/
-│   ├── profiles/
-│   └── init/
-│
-├── infra/
-│   ├── firewall/
-│   ├── services/
-│   └── backups/
-│
-└── README.md
-```
-
----
-
-## Status
-
-```
-ACTIVE DEVELOPMENT
-```
-
-This repository reflects evolving designs and informed trade-offs. Stability is secondary to **clarity, auditability, and security posture**.
-
----
-
-## Disclaimer
-
-This material is provided for **educational and personal use**. Designs prioritize security and isolation over usability and may require adaptation for production environments.
-
-Always test changes in isolated systems before deployment.
-
----
-
-```
-> security is not paranoia
-> it is risk management
-```
