@@ -56,3 +56,97 @@ It documents **design decisions, threat models, and reference implementations** 
 
 ## Design Philosophy
 
+Security is treated as a **continuous process**, not a fixed state.
+
+---
+
+## Reference Architecture (Personal Secure System)
+
+┌──────────────────────────────┐
+│ UEFI Firmware │
+│ Secure / Measured Boot │
+└──────────────┬───────────────┘
+│
+┌──────────────▼──────────────┐
+│ Unified Kernel Image │
+│ Signed · Immutable │
+└──────────────┬───────────────┘
+│
+┌──────────────▼──────────────┐
+│ Sepherent-XT │
+│ Full Disk Encryption │
+└──────────────┬───────────────┘
+│
+┌──────────────▼──────────────┐
+│ BTRFS Layout │
+│ root · home · snapshots │
+└──────────────┬───────────────┘
+│
+┌──────────────▼──────────────┐
+│ Hardened Linux System │
+│ SELinux · seccomp │
+└──────────────────────────────┘
+
+
+---
+
+## Threat Model (High-Level)
+
+**Assumed threats**
+- Malware and targeted compromise
+- Supply-chain attacks
+- Physical access or device seizure
+- Coerced disclosure
+
+**Mitigations**
+
+
+---
+
+## Repository Structure
+
+
+.
+├── docs/ # Architecture, threat models, diagrams
+│ ├── threat-models/
+│ ├── qubes/
+│ ├── encryption/
+│ └── networking/
+│
+├── gentoo/ # Hardened Gentoo system design
+│ ├── kernel/
+│ ├── profiles/
+│ └── init/
+│
+├── infra/ # Infrastructure & self-hosting patterns
+│ ├── firewall/
+│ ├── services/
+│ └── backups/
+│
+└── README.md
+
+
+---
+
+## Status
+
+
+This repository reflects **evolving designs and informed trade-offs**.  
+Clarity, auditability, and security posture are prioritized over convenience.
+
+---
+
+## Contact
+
+- GitHub: https://github.com/drcoffeerat
+- LinkedIn: (add when ready)
+- Email: (add when ready)
+
+---
+
+## Disclaimer
+
+This repository is intended for **educational and professional demonstration purposes**.  
+Designs favor security and isolation and may require adaptation for production environments.
+
+
