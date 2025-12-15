@@ -59,3 +59,78 @@ Everything is built with **auditability, reproducibility, and threat modeling in
 
 ## 🗂 Repository Structure
 
+.
+├── docs/ # Design docs, models and reference diagrams
+│ ├── threat-models/
+│ ├── qubes/
+│ ├── encryption/
+│ └── networking/
+├── gentoo/ # Hardened Gentoo design & configs
+│ ├── kernel/
+│ ├── profiles/
+│ └── init/
+├── infra/ # Network & infrastructure frameworks
+│ ├── firewall/
+│ ├── services/
+│ └── backups/
+└── README.md # This file
+
+
+---
+
+## 🛠 Sample Reference Architecture (Personal System)
+
+
+
+┌──────────────────────────────┐
+│ UEFI Firmware │
+│ Secure + Measured Boot │
+└──────────────┬───────────────┘
+│
+┌──────────────▼──────────────┐
+│ Unified Kernel Image │
+│ Signed + Immutable │
+└──────────────┬───────────────┘
+│
+┌──────────────▼──────────────┐
+│ Sepherent-XT │
+│ Full-Disk Auth Encryption │
+└──────────────┬───────────────┘
+│
+┌──────────────▼──────────────┐
+│ BTRFS Layout │
+│ root · home · snapshots │
+└──────────────┬───────────────┘
+│
+┌──────────────▼──────────────┐
+│ Hardened Linux System │
+│ SELinux · Seccomp │
+└──────────────────────────────┘
+
+
+---
+
+## 📌 Key Design Principles
+
+
+
+• assume compromise
+• minimize attack surface
+• isolate trust domains
+• encrypt all sensitive data
+• automate for reproducibility
+
+Security is a **continuous process**, not a checkbox.
+
+---
+
+## 📬 Let’s Connect
+
+- 💼 LinkedIn: https://linkedin.com/in/drcoffeerat  
+- 📧 Email: [your.email@example.com]  
+- 🧠 Always open to conversation about secure systems, open source, or architecture challenges.
+
+---
+
+
+
