@@ -1,169 +1,136 @@
-# █▓▒░  ICT · LINUX · SECURITY ARCHITECTURE  ░▒▓█
+# █▓▒░ Secure Systems & Infrastructure ░▒▓█
 
 ```
-> booting secure systems...
-> assume breach
-> trust nothing
-> isolate everything
+> initializing secure environment
+> threat model: hostile by default
+> isolation: enforced
 ```
-
-╔══════════════════════════════════════════════════════╗
-║  infrastructure · system design · secops · persec   ║
-║  qubes os · gentoo · self-hosting · encryption       ║
-╚══════════════════════════════════════════════════════╝
 
 ---
 
-## ░░ WHOAMI ░░
+## Overview
 
-I design **security-first systems and infrastructure** with a strong bias toward:
+This repository documents **professional-grade ICT, Linux, and security architecture work** with a focus on:
 
-* minimalism over convenience
-* isolation over blind trust
-* rebuildability over permanence
+* secure system and infrastructure design
+* SecOps and personal operational security (PerSec)
+* hardened Linux environments
+* privacy-respecting, self-hosted services
 
-My work focuses on **personal and small-scale architectures** that assume a hostile environment — technically, legally, and socially.
-
-This repository documents **design logic, threat models, and reference architectures** — not just configs.
-
----
-
-## ░░ CORE PHILOSOPHY ░░
-
-```
-• the network is hostile
-• the system will be compromised
-• secrets must be compartmentalized
-• recovery must be faster than analysis
-```
-
-Security is treated as a **process**, not a state.
+The emphasis is on **design rationale, threat modeling, and reproducible architecture**, not convenience-driven configuration.
 
 ---
 
-## ░░ DOMAINS OF INTEREST ░░
-
-### [ QUBES OS ]
+## Design Principles
 
 ```
-trust → dom0
-risk  → disposable qubes
-secrets → offline / isolated qubes
+• assume compromise
+• minimize attack surface
+• isolate trust domains
+• encrypt everything at rest
+• rebuild faster than investigate
 ```
 
-* split-trust workflows
-* disposable environments
-* hardware-backed isolation
-* minimal dom0 surface
+Security is treated as a continuous process, not a final state.
 
 ---
 
-### [ GENTOO :: MINIMAL SYSTEMS ]
+## Areas of Expertise
 
-```
-profile  : hardened
-init     : s6 / minimal
-kernel   : custom
-userspace: reduced
-```
+### Qubes OS Architecture
 
-* custom hardened kernels
-* SELinux + seccomp
-* no unnecessary daemons
-* reproducible builds
+* split-trust workflows and compartmentalization
+* disposable environments for untrusted workloads
+* minimal, hardened dom0 design
+* hardware-backed isolation assumptions
 
 ---
 
-### [ ENCRYPTION STACK ]
+### Gentoo-Based Minimal Linux Systems
 
-```
-firmware
-  ↓
-uki (signed)
-  ↓
-sepherent-xt
-  ↓
-btrfs (subvolumes)
-```
-
-* Sepherent-XT for at-rest secrecy
-* LUKS2 with integrity
-* key separation & rotation
-* snapshot-safe encryption
+* hardened Gentoo profiles
+* custom kernel builds
+* SELinux and seccomp enforcement
+* non-systemd init (s6-based designs)
+* reduced and auditable userspace
 
 ---
 
-### [ NETWORK & INFRASTRUCTURE ]
+### Encryption & Data Protection
 
 ```
-[ internet ]
-     │
- [ firewall ]
-     │
- [ bastion ]
-     │
-[ segmented zones ]
+UEFI → signed UKI → Sepherent-XT → BTRFS
 ```
 
-* zero-trust assumptions
-* VLAN & zone separation
-* minimal exposed services
-* logging without surveillance
+* Sepherent-XT for full-disk encryption
+* LUKS2 with integrity and authenticated encryption
+* key separation and rotation strategies
+* snapshot-safe encrypted storage layouts
 
 ---
 
-## ░░ PERSONAL SYSTEM REFERENCE ░░
+### Network & Infrastructure Design
+
+* zero-trust network assumptions
+* segmented network zones (VLAN-based)
+* firewall-first service exposure
+* bastion and jump-host patterns
+* logging designed for security, not surveillance
+
+---
+
+## Reference Architecture (Personal Secure System)
 
 ```
 ┌─────────────────────────────┐
 │        UEFI Firmware        │
-│   secure boot · measured   │
+│   Secure / Measured Boot   │
 └──────────────┬──────────────┘
                │
 ┌──────────────▼──────────────┐
-│       Unified Kernel        │
-│   signed · immutable        │
+│     Unified Kernel Image    │
+│   Signed · Immutable        │
 └──────────────┬──────────────┘
                │
 ┌──────────────▼──────────────┐
-│      Sepherent-XT           │
-│   full disk encryption     │
+│       Sepherent-XT          │
+│   Full Disk Encryption     │
 └──────────────┬──────────────┘
                │
 ┌──────────────▼──────────────┐
-│      BTRFS Layout           │
-│   root · home · snapshots   │
+│        BTRFS Layout         │
+│   Root · Home · Snapshots   │
 └──────────────┬──────────────┘
                │
 ┌──────────────▼──────────────┐
-│    Hardened Gentoo OS       │
-│   selinux · seccomp         │
+│    Hardened Gentoo System   │
+│   SELinux · Seccomp         │
 └─────────────────────────────┘
 ```
 
 ---
 
-## ░░ THREAT MODEL (ABBREVIATED) ░░
+## Threat Model (High-Level)
+
+**Assumed threats:**
+
+* opportunistic and targeted malware
+* supply-chain compromise
+* physical access or device seizure
+* coerced disclosure
+
+**Mitigation strategy:**
 
 ```
-• malware
-• supply-chain compromise
-• physical access
-• coerced disclosure
-```
-
-Mitigations:
-
-```
-• isolation > hardening
-• encryption everywhere
-• fast rebuilds
-• disposable systems
+• isolation over hardening alone
+• encryption by default
+• strict trust boundaries
+• fast rebuild and key rotation
 ```
 
 ---
 
-## ░░ REPOSITORY MAP ░░
+## Repository Structure
 
 ```
 .
@@ -188,29 +155,25 @@ Mitigations:
 
 ---
 
-## ░░ STATUS ░░
+## Status
 
 ```
-[ ACTIVE ]
+ACTIVE DEVELOPMENT
 ```
 
-Expect opinionated designs, evolving diagrams, and trade-offs that prioritize **security over comfort**.
+This repository reflects evolving designs and informed trade-offs. Stability is secondary to **clarity, auditability, and security posture**.
 
 ---
 
-## ░░ DISCLAIMER ░░
+## Disclaimer
 
-```
-this is not plug-and-play
-this is not enterprise support
-this is not convenience-first
-```
+This material is provided for **educational and personal use**. Designs prioritize security and isolation over usability and may require adaptation for production environments.
 
-Test everything. Assume failure. Rebuild often.
+Always test changes in isolated systems before deployment.
 
 ---
 
 ```
-> you are not paranoid
-> you are paying attention
+> security is not paranoia
+> it is risk management
 ```
