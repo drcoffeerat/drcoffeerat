@@ -1,0 +1,36 @@
+# /boot
+UUID=2b1e9d74-dedb-4968-83e0-2632f0f58e99  /boot   btrfs  rw,noatime,nodev,nosuid  0 2
+
+# EFI System Partition
+UUID=B785-5425  /boot/efi  vfat  rw,noatime,nodev,nosuid,umask=0077 0 2
+
+# encrypted Swap
+/dev/mapper/dark_swap  none  swap  sw  0  0
+
+# Root system
+/dev/mapper/dark_root  /               btrfs  rw,noatime,ssd,space_cache=v2,subvol=@system   0 0
+/dev/mapper/dark_root  /usr            btrfs  rw,noatime,ssd,space_cache=v2,subvol=@usr_ro  0 0
+/dev/mapper/dark_root  /etc            btrfs  rw,noatime,ssd,space_cache=v2,subvol=@etc_ro  0 0
+/dev/mapper/dark_root  /opt            btrfs  rw,noatime,ssd,space_cache=v2,subvol=@opt_ro  0 0
+
+# Variable data
+/dev/mapper/dark_root  /var            btrfs  rw,noatime,ssd,space_cache=v2,subvol=@var      0 0
+/dev/mapper/dark_root  /var/log        btrfs  rw,noatime,ssd,space_cache=v2,subvol=@var_log  0 0
+/dev/mapper/dark_root  /var/cache      btrfs  rw,noatime,ssd,space_cache=v2,subvol=@var_cache 0 0
+/dev/mapper/dark_root  /var/cache/distfiles btrfs rw,noatime,ssd,space_cache=v2,subvol=@distfiles 0 0
+/dev/mapper/dark_root  /var/db/repos/gentoo btrfs rw,noatime,ssd,space_cache=v2,subvol=@portage 0 0
+/dev/mapper/dark_root  /var/tmp        btrfs  rw,noatime,ssd,space_cache=v2,subvol=@var_tmp 0 0
+/dev/mapper/dark_root  /var/tmp/portage btrfs rw,noatime,ssd,space_cache=v2,subvol=@portage_tmp 0 0
+
+# Containers / jails / pods
+/dev/mapper/dark_root  /srv/jails      btrfs  rw,noatime,ssd,space_cache=v2,subvol=@srv_jails 0 0
+/dev/mapper/dark_root  /var/lib/containers btrfs rw,noatime,ssd,space_cache=v2,subvol=@containers 0 0
+/dev/mapper/dark_root  /var/lib/pods   btrfs  rw,noatime,ssd,space_cache=v2,subvol=@pods 0 0
+
+# Home (separate encrypted volume)
+/dev/mapper/dark_home  /home  btrfs  rw,relatime,ssd,space_cache=v2,subvol=@home,compress=zstd:3 0 0
+
+# tmpfs (volatile, hardened)
+tmpfs  /tmp      tmpfs  rw,nosuid,nodev,noexec,relatime,size=4G,mode=1777  0 0
+tmpfs  /run  tmpfs  rw,nosuid,nodev,relatime,size=1G  0 0
+tmpfs  /dev/shm  tmpfs  rw,nosuid,nodev,noexec,relatime,size=3G            0 0

@@ -1,0 +1,6 @@
+>=dev-python/trove-classifiers-0 python_targets_python3_12 python_targets_python3_13
+dev-lang/python python_targets_python3_12 python_targets_python3_13
+>=dev-python/gpep517-19 python_targets_python3_13
+>=dev-python/flit-core-3.12.0 python_targets_python3_13
+>=dev-python/installer-0.7.0 python_targets_python3_13
+

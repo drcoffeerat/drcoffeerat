@@ -1,0 +1,13 @@
+sys-boot/grub devic-mapper branding
+sys-kernel/dracut luks selinux btrfs crypt rootfs swap
+sys-kernel/genkernel luks zstd selinux
+
+sys-apps/busybox static -pam savedconfig
+
+sys-libs/libselinux static-libs
+dev-libs/libpcre2 static-libs
+virtual/libcrypt static-libs
+sys-libs/libxcrypt static-libs
+
+
+sys-apps/sudo -pam
